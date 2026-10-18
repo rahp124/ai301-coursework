@@ -57,7 +57,7 @@ one in the week it belongs to.
 
 **Unit 5: Built and tested a profile-based issue scout**
 
-On 2026-10-18, I migrated my preserved Unit 1 skill into the issue-scout structure, completed two metadata-based searches, and ran the scout: it accepted AutoScrum-IA#2 and OpenTelemetry#288 and rejected three other issues. The first run exposed a missing check for issues that may already be fixed, so I added a general still-actionable check and tested it against #288, #2, and #304; current source supported keeping #288 and rejecting #304. The Issue Selection site could not be opened in the available browser, so I have not graded the required site-listed picks; those URLs remain the step needed to finish Unit 5.
+On 2026-10-18, I migrated my preserved Unit 1 skill into the issue-scout structure, ran two metadata-based searches, and graded the top five: two were accepted and three rejected. The scan exposed a missing check for issues that may already be fixed, so I added a general still-actionable check and tested it against #288, #2, and #304; current source supported accepting #288 and #2 and rejecting #304. From the signed-in AI301 Issue Selection listing, the scout accepted Red-DiscordBot #6458, a documentation change outside my preferred bug/test work with some scope ambiguity, and rejected #6794 because four open PRs already address it. These results are recorded for next week's issue choice; I have not claimed an issue.
 
 **Unit 6: [one line on the tool work]**
 
