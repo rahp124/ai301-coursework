@@ -55,9 +55,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: Migrated issue-scout and prepared a profile-based strategy for review**
+**Unit 5: Built and tested a profile-based issue scout**
 
-On 2026-10-18, I backed up my Unit 1 issue-select installation and migrated it to the official issue-scout frame, preserving its rubric and evidence guide while preparing a two-query search-strategy proposal. The installed GitHub CLI lacked `gh search`, so I installed an official current binary alongside it and verified the supported search flags and authentication. Both saved fit profiles were placeholders, and the browser connection failed before I could operate the AI301 Issue Selection site; the scan and candidate grading therefore remain pending my review of the proposed profile and two or three site-listed issue URLs, with these limitations recorded in the scout's dated notes.
+On 2026-10-18, I migrated my preserved Unit 1 skill into the issue-scout structure, completed two metadata-based searches, and ran the scout: it accepted AutoScrum-IA#2 and OpenTelemetry#288 and rejected three other issues. The first run exposed a missing check for issues that may already be fixed, so I added a general still-actionable check and tested it against #288, #2, and #304; current source supported keeping #288 and rejecting #304. The Issue Selection site could not be opened in the available browser, so I have not graded the required site-listed picks; those URLs remain the step needed to finish Unit 5.
 
 **Unit 6: [one line on the tool work]**
 
