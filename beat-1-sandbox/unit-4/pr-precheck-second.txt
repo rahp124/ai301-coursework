@@ -1,0 +1,66 @@
+Live mode on the target repo `codepath/pathreview-ai301-fa26-s3`. I read `scope.md` first, then `SKILL.md`, `voice-guide.md`, `rubric.md`, `procedure.md` and the evidence guide. All have real content. I edited and posted nothing.
+
+**Base check:** local `main`, `origin/main`, `upstream/main` and the live upstream `main` are all `2f4e82f`, so the base is not stale. The branch is two commits (`34765cb`, `098046e`) touching three files.
+
+**Verdict: accept.** Every required check passes. The first thing to fix before opening is the broken Plan link (details below).
+
+## Checks
+
+1. **plan-fidelity: pass.**
+   - The diff matches `plan.md`:
+     - `health.py` now uses `redis.Redis.from_url(settings.redis_url, decode_responses=True)`.
+     - `pyproject.toml` drops only `attr-defined`.
+     - `tests/unit/test_health.py` is new.
+   - The plan anticipated narrowing the mypy override, and Deviations records why `call-overload` and `index` stay. The Unit 4 test-strengthening is also recorded.
+   - The draft's claims match the diff.
+2. **observable-testing: pass.**
+   - A fresh before run on `2f4e82f` shows `redis: unhealthy` with `'Settings' object has no attribute 'redis_host'`, even though `redis-cli ping` returned `PONG`.
+   - The after run on `098046e` shows `redis: healthy` and `redis_health_check_passed`.
+   - The persisting 503 is attributed to the separate Postgres bug (#61), and no full-health claim is made.
+   - The three unit tests were run: 378 passed, 53 xfailed.
+3. **repo-checks: pass.** All five CI jobs are accounted for:
+   - **lint:** passes, and `black --check` is clean.
+   - **typecheck:** the default `make typecheck` fails on unchanged `main` too (NumPy stub vs the 3.11 target). It passes under Python 3.11, which matches CI. This is disclosed and the 3.11 run is not rounded up.
+   - **test-unit:** passes.
+   - **test-integration:** 0 tests collected (exit 5), stated as not a pass, and CI's shim accepts exit 5.
+   - **frontend:** 18 passed.
+   - The "CI is green" box is correctly left unticked as pending. I did not re-run these commands. I relied on `test_evidence.md` and the `.github/workflows/ci.yml` commands.
+4. **reviewable-diff: pass.** All three files are on the bug, with no debris. The four coursework `.md` files are untracked and not in any commit.
+5. **repo-requirements: pass.**
+   - **Template:** every section has real content, and `Closes #62` is present.
+   - **Commits:** conventional (`fix(api)`, `test(api)`), and the branch is `fix/62-redis-health-check`.
+   - **Seeded marker:** the `attr-defined` suppression is removed, and no #62 xfail marker exists in `tests/`.
+   - **AI policy:** I found none in `README`, `CONTRIBUTING.md`, `docs/` or the template, so the conditional requirement passes. The draft discloses AI use anyway.
+6. **reviewer-orientation (preferred): pass, with one caveat.** The draft gives the reason, the changed behavior, and the limits: Postgres #61, empty integration suite, typecheck environment. The caveat is the broken Plan link.
+
+## Findings to fix before opening
+- **The Plan link is broken.** The draft cites `issuecomment-5983283508` as "Plan:". That comment, posted by `rahp124`, has the body `@comment.md`, which is the literal filename and not the plan text.
+  - A reviewer following the link sees no plan. `scope.md` says the PR must implement the plan you posted.
+  - I graded plan-fidelity against local `plan.md` and `comment.md` because the rubric's pass condition is met there. This is a rubric tension to flag for revision.
+  - I'd recommend posting the real plan text as a new comment and updating the link. I didn't do either.
+- **`plan.md` is slightly stale.** Its Approach step 2 says to remove the whole override block, while the Deviations section correctly records the narrower change.
+- **Disclosure wording is heavy.** It names Codex and Claude Code/Sonnet roles. That is honest but verbose. It also says the checks were "agent-executed", which is worth confirming reflects what you want to state.
+
+## Voice notes
+I found no violations of `voice-guide.md`. The draft separates observed from inferred, makes no deadline or guarantee claims, and keeps "planned" and "done" distinct. It states limits plainly, and every success claim has an artifact behind it.
+
+```json
+{
+  "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/62",
+  "checks": [
+    {"name": "plan-fidelity", "grade": "pass",
+     "evidence": "Diff is from_url(settings.redis_url) + attr-defined removal + 3 tests, matching plan.md; narrowed override (call-overload/index kept) and Unit 4 test refinement are recorded in Deviations. Tension: posted plan comment 5983283508 body is literally '@comment.md'."},
+    {"name": "observable-testing", "grade": "pass",
+     "evidence": "Before on 2f4e82f: redis unhealthy + AttributeError despite PONG; after on 098046e: redis healthy + redis_health_check_passed; 378 passed/53 xfailed; remaining 503 attributed to separate Postgres bug #61."},
+    {"name": "repo-checks", "grade": "pass",
+     "evidence": "lint, black, unit and frontend pass; typecheck passes on Python 3.11 (CI version) after the default env's failure is disclosed and shown identical on main; integration 0 collected/exit 5 disclosed and CI accepts it; CI-green box left unticked as pending."},
+    {"name": "reviewable-diff", "grade": "pass",
+     "evidence": "3 files (+74/-7): health.py probe, one pyproject.toml suppression, new test_health.py; coursework .md files are untracked and not committed."},
+    {"name": "repo-requirements", "grade": "pass",
+     "evidence": "All template sections filled with 'Closes #62', conventional commits and fix/62-redis-health-check branch, attr-defined suppression removed with no #62 xfail present, and no AI policy found in README/CONTRIBUTING/docs/template (disclosure given anyway)."},
+    {"name": "reviewer-orientation", "grade": "pass",
+     "evidence": "Summary gives cause and fix, and Notes/Deviations name the Postgres #61, integration and typecheck limits; caveat: the Plan link points to a comment whose body is '@comment.md'."}
+  ],
+  "verdict": "accept"
+}
+```

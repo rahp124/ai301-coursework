@@ -1,0 +1,5 @@
+$ make typecheck VENV_BIN=/tmp/ai301-unit4-20261018/venv311/bin
+/tmp/ai301-unit4-20261018/venv311/bin/mypy api/ core/ ingestion/ rag/ agent/ safety/
+Success: no issues found in 76 source files
+
+EXIT_STATUS:0

@@ -1,0 +1,44 @@
+{
+  "pr": "https://github.com/codepath/pathreview-ai301-fa26-s3/pull/249",
+  "head_sha": "098046eb5a7ceca44a5b363184392a2c64bf3012",
+  "base_repository": "codepath/pathreview-ai301-fa26-s3",
+  "base_branch": "main",
+  "ci_run": "https://github.com/codepath/pathreview-ai301-fa26-s3/actions/runs/39119449876",
+  "jobs": [
+    {
+      "name": "frontend",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/codepath/pathreview-ai301-fa26-s3/actions/runs/39119449876/job/117651870730",
+      "completed_at": "2026-10-18T10:29:50Z"
+    },
+    {
+      "name": "test-integration",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/codepath/pathreview-ai301-fa26-s3/actions/runs/39119449876/job/117651870837",
+      "completed_at": "2026-10-18T10:30:35Z"
+    },
+    {
+      "name": "lint",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/codepath/pathreview-ai301-fa26-s3/actions/runs/39119449876/job/117651870945",
+      "completed_at": "2026-10-18T10:29:41Z"
+    },
+    {
+      "name": "typecheck",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/codepath/pathreview-ai301-fa26-s3/actions/runs/39119449876/job/117651870951",
+      "completed_at": "2026-10-18T10:30:24Z"
+    },
+    {
+      "name": "test-unit",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/codepath/pathreview-ai301-fa26-s3/actions/runs/39119449876/job/117651870960",
+      "completed_at": "2026-10-18T10:30:31Z"
+    }
+  ]
+}

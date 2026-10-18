@@ -1,0 +1,5 @@
+$ arch -arm64 /Users/rahul/Desktop/pathreview-ai301-fa26-s3/.venv/bin/mypy api/ core/ ingestion/ rag/ agent/ safety/
+/Users/rahul/Desktop/pathreview-ai301-fa26-s3/.venv/lib/python3.12/site-packages/numpy/__init__.pyi:737: error: Type statement is only supported in Python 3.12 and greater  [syntax]
+Found 1 error in 1 file (errors prevented further checking)
+
+EXIT_STATUS:2

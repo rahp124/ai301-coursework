@@ -1,0 +1,5 @@
+$ arch -arm64 .venv/bin/black --check .
+All done! ✨ 🍰 ✨
+111 files would be left unchanged.
+
+EXIT_STATUS:0

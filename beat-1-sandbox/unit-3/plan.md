@@ -128,3 +128,26 @@ Nothing changed; the plan held. The implementation matches what was posted:
 
 Before/after evidence, test results, and lint/typecheck output are recorded in this
 unit's `plan-and-implement.md` write-up.
+
+
+### Unit 4 validation refinement
+
+Strengthened the existing client-construction test to set a nondefault
+`settings.redis_url` (`redis://configured-redis:6380/4`) and assert the complete
+`from_url(redis_url, decode_responses=True)` call. The original test hardcoded the
+default URL, so it could pass an implementation that ignored configuration. This
+refines the planned regression coverage; production scope and the other probes stay
+the same. No issue #62 xfail marker exists in this checkout; the matching
+`attr-defined` suppression was already removed by Unit 3.
+
+
+### Unit 4 upstream-record correction
+
+The Unit 3 issue comment at
+https://github.com/codepath/pathreview-ai301-fa26-s3/issues/62#issuecomment-5983283508
+contained only literal `@comment.md`, not the intended plan text. On 2026-10-18,
+with explicit permission, the existing comment was corrected in place. It now
+explains the posting mistake, reproduces the intended plan, and adds actual Unit 4
+status. Its URL is preserved. The full plan was recorded in this course repo, but
+was not visible in that issue comment before this correction; no earlier posting
+claim is made. The PR discloses this gap.

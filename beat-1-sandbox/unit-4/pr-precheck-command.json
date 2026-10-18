@@ -1,0 +1,15 @@
+[
+  "claude",
+  "-p",
+  "--model",
+  "sonnet",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--tools",
+  "Read,Glob,Grep,Skill,Bash",
+  "--allowedTools",
+  "Read,Glob,Grep,Skill,Bash(git diff *),Bash(git log *),Bash(git status *),Bash(git rev-parse *),Bash(git remote *),Bash(gh api *),Bash(gh issue view *)",
+  "--add-dir",
+  "/Users/rahul/.claude/skills/pr-precheck"
+]

@@ -1,0 +1,5 @@
+$ make lint VENV_BIN=/tmp/ai301-unit4-20261018/venv311/bin
+/tmp/ai301-unit4-20261018/venv311/bin/ruff check .
+All checks passed!
+
+EXIT_STATUS:0

@@ -1,0 +1,18 @@
+Actual final live invocation arguments: pr-precheck-command.json
+Prompt: pr-precheck-prompt.txt
+
+Observed installed component reads:
+/Users/rahul/.claude/skills/pr-precheck/scope.md
+/Users/rahul/.claude/skills/pr-precheck/SKILL.md
+/Users/rahul/.claude/skills/pr-precheck/rubric.md
+/Users/rahul/.claude/skills/pr-precheck/procedure.md
+/Users/rahul/.claude/skills/pr-precheck/voice-guide.md
+/Users/rahul/.claude/skills/pr-precheck/references/evidence-guide.md
+
+scope.md sha256:0881e0fde9fe4f78698538a9c6658e0eebd74b46177129408ed0495488421067
+CONTRACT.md sha256:23a315587767c9f626f536a3e5b1e82c10ec54acf0c698eba597d94bd71c7ebd
+rubric.md sha256:6e48a241fd1dcd98168b34551e37d760808d31bff95a11d1913be37c8adeba4b
+SKILL.md sha256:4cec3db52acd0714c9c9786a7f7d78086734776624577c86ee731ab40c17b972
+procedure.md sha256:bc680a672195674f8dfc29a8e74426191296b231ad583ab45d19355f8651ab21
+voice-guide.md sha256:bb1486d107838d76f904f9e7a802f85950700161b06db641239b2a4c4871ca13
+references/evidence-guide.md sha256:e70931a8ff08ac5f42af120be238261ca39f9fdb664f36a39874ee3f4d8c497e

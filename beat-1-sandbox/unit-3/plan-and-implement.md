@@ -21,6 +21,12 @@ rahp124
 
 https://github.com/codepath/pathreview-ai301-fa26-s3/issues/62#issuecomment-5983283508
 
+**Unit 4 correction (2026-10-18):** this issue comment originally contained only
+literal `@comment.md`, not the intended text reproduced below. With my explicit
+permission it was corrected in place, retaining its URL and adding a dated explanation
+and current results. The full plan existed in the course record, but it was not
+visible in that issue comment before this correction. The PR discloses the gap.
+
 Following up on my reproduction above with a plan for issue #62.
 
 Diagnosis: the Redis probe in `api/routes/health.py` builds its client from

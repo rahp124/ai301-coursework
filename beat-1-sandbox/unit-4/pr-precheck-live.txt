@@ -1,0 +1,74 @@
+# pr-precheck: issue #62 (live mode)
+
+**Verdict: accept.** Every required check passes, with the reservations listed below.
+
+**Scope and mode.** The repo in `scope.md` is `codepath/pathreview-ai301-fa26-s3`, which matches the upstream target. Local `main` and upstream `main` are both `2f4e82f52efbcfcc57d65b3fa5348672163ca088`, so the base is not stale. The package is the unopened draft for issue #62, from `rahp124:fix/62-redis-health-check`. Rubric, procedure, evidence guide and voice guide all have real content.
+
+**Live requirements gathered**
+- **Template:** `.github/PULL_REQUEST_TEMPLATE.md` has Summary, Issue, Changes, Testing, Screenshots / Demo and Notes for Reviewers. The draft fills all of them.
+- **CONTRIBUTING:**
+  - Branch format `<type>/<issue>-<desc>`.
+  - Conventional Commits with scopes.
+  - Five CI jobs must be green: lint, typecheck, test-unit, test-integration and frontend.
+  - Fixing a seeded bug removes its xfail marker and its `pyproject.toml` suppression.
+- **CI:** `ci.yml` runs Python 3.11. It treats pytest exit 5 on the empty integration suite as success.
+- **AI policy:** none stated in CONTRIBUTING, the template or the README. The draft discloses AI use anyway.
+- **Issue thread:** 35 comments, all from `NONE`-association participants. I found no maintainer directions.
+
+**Findings by check**
+- **plan-fidelity (pass).** The diff contains exactly the planned changes:
+  - `from_url(settings.redis_url, decode_responses=True)` in the probe.
+  - `attr-defined` dropped from the mypy override, with `call-overload` and `index` kept. The plan named this narrowing as a risk.
+  - A new `tests/unit/test_health.py` with three tests.
+  - `plan.md` records the narrowing, the test refinement and the comment correction.
+  - The Postgres probe and #61 are untouched.
+- **observable-testing (pass).**
+  - Same-Redis before/after runs against `/health` show `redis` going from `unhealthy` with the `'Settings' object has no attribute 'redis_host'` log line to `healthy` with `redis_health_check_passed`.
+  - The overall HTTP 503 is honestly attributed to the separate Postgres bug.
+  - Unit tests: 378 passed, 53 xfailed.
+- **repo-checks (pass).**
+  - Lint, Black, frontend (18 tests) and unit tests are reported with real outcomes.
+  - The default `make typecheck` fails in the local 3.12 venv, and the draft says so. The failure also reproduces on unchanged `main`, so this diff did not introduce it. It passes in a clean 3.11 environment matching CI.
+  - Integration collects 0 tests (pytest exit 5, make exit 2), disclosed as not a pass.
+  - The CI-green box is correctly left unticked as pending.
+- **reviewable-diff (pass).** Three files, all on-topic, in two clean commits. The four coursework files are untracked and excluded.
+- **repo-requirements (pass).**
+  - The branch name `fix/62-redis-health-check` and the commit scopes follow the conventions, and the commits carry `Fixes #62`.
+  - The draft has `Closes #62` and every template section.
+  - The mypy suppression for #62 is removed. I grepped the tests and found no #62 xfail marker, so none needed removing.
+  - AI use and extent are disclosed.
+  - The re-fetched comment `5983283508` has the same URL, was updated at 2026-10-18T10:26:56Z, and now opens with a dated correction. It reproduces the intended plan and adds a Unit 4 status.
+- **reviewer-orientation (pass, preferred).** The draft gives the reason for the change, what to review, and the remaining uncertainty.
+
+**Reservations (none changes the verdict)**
+1. **I did not re-run the tests.** The pytest run needed approval, so I didn't force it. The `test_evidence.md` outputs are the recorded evidence. I read the test source and the diff and they are consistent with it.
+2. **The plan was not visible upstream before the fix.** For about two weeks the issue comment held only `@comment.md`. The draft and the corrected comment disclose this and don't claim earlier posting. That is a transparency issue, not a fidelity failure.
+3. **"Contemporaneous" is loose.** The linked course plan was committed at 2026-10-04T19:45Z. The fix commit is 19:06Z, about 39 minutes earlier. The corrected comment calls that record contemporaneous without saying it came after the fix commit.
+4. **CI is unobserved.** All five jobs must be green after opening. Fork-PR workflows may need a maintainer to release them.
+5. **Stale comment in `pyproject.toml`.** The header comment at lines 147–148 still reads `attr-defined -> issue #62`, though that code is now removed. It's optional cleanup and not required by CONTRIBUTING.
+6. **Typecheck box.** It is ticked on the strength of a 3.11 override run. The disclosure is honest, but a reviewer may want to see CI's typecheck job confirm it.
+
+**Rubric tension.** The rubric has no check on whether the plan was visibly posted upstream before implementation. `scope.md` asks the PR to implement "the plan you posted". I graded plan-fidelity against `plan.md` and the corrected comment, as the rubric says. A later rubric revision could address this.
+
+**Voice notes.** I found no broken voice-guide rules. The draft separates what was observed from what is claimed, makes no deadline or guarantee, and says the Postgres failure persists. The AI disclosure names specific uses.
+
+```json
+{
+  "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/62",
+  "checks": [
+    {"name": "plan-fidelity", "grade": "pass",
+     "evidence": "Diff has exactly from_url(settings.redis_url, decode_responses=True), attr-defined-only mypy removal (call-overload/index kept per plan's named risk) and test_health.py; plan.md Deviations records the narrowing, test refinement and comment correction; Postgres/#61 untouched."},
+    {"name": "observable-testing", "grade": "pass",
+     "evidence": "Same-Redis before/after curl: redis unhealthy + \"'Settings' object has no attribute 'redis_host'\" -> redis healthy + redis_health_check_passed; overall 503 attributed to separate Postgres bug; 3 unit tests, 378 passed/53 xfailed (not independently re-run in this review)."},
+    {"name": "repo-checks", "grade": "pass",
+     "evidence": "lint/black/frontend(18)/unit reported with outcomes; default typecheck failure in local 3.12 venv disclosed and reproduced on unchanged main, passes in 3.11 venv; integration 0 tests (exit 5) disclosed and matches CI's shim; CI-green box left unticked as pending."},
+    {"name": "reviewable-diff", "grade": "pass",
+     "evidence": "git diff --stat: 3 files (health.py, pyproject.toml, tests/unit/test_health.py), 74+/7-, two clean commits; plan.md/comment.md/pr_draft.md/test_evidence.md are untracked and excluded."},
+    {"name": "repo-requirements", "grade": "pass",
+     "evidence": "All template sections filled with 'Closes #62'; branch fix/62-redis-health-check and conventional commits with 'Fixes #62'; attr-defined suppression removed and no #62 xfail exists; no stated AI policy, AI use and extent disclosed anyway; corrected plan comment 5983283508 re-fetched with dated correction."},
+    {"name": "reviewer-orientation", "grade": "pass",
+     "evidence": "Summary explains the Settings/redis_url mismatch; Notes for Reviewers point at the Redis probe and tests, and state the retained suppressions, the Postgres #61 503, and pending CI."}
+  ],
+  "verdict": "accept"
+}
+```
