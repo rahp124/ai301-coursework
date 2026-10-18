@@ -55,10 +55,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: Migrated issue-scout and prepared a profile-based strategy for review**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+On 2026-10-18, I backed up my Unit 1 issue-select installation and migrated it to the official issue-scout frame, preserving its rubric and evidence guide while preparing a two-query search-strategy proposal. The installed GitHub CLI lacked `gh search`, so I installed an official current binary alongside it and verified the supported search flags and authentication. Both saved fit profiles were placeholders, and the browser connection failed before I could operate the AI301 Issue Selection site; the scan and candidate grading therefore remain pending my review of the proposed profile and two or three site-listed issue URLs, with these limitations recorded in the scout's dated notes.
 
 **Unit 6: [one line on the tool work]**
 
