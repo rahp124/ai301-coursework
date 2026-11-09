@@ -161,7 +161,7 @@ I checked PR #6814 and found Evanroby’s October 19 inline suggestion to put th
 - 2026-10-18: Copilot's automated review could not run because the requesting user's quota was reached; no human maintainer feedback has arrived.
 - 2026-10-18: The PR monitor classified the bot-only activity as no human review and drafted a wait note. I did not post a response or nudge.
 - 2026-10-19: Evanroby suggested separating the `PYTHON=` note into its own paragraph.
-- 2026-11-08: I added the paragraph break, passed `tox -e docs`, and pushed commit `0c0e5d4f`.
+- 2026-11-08: I added the paragraph break, passed `tox -e docs`, pushed commit `0c0e5d4f`, and [replied to Evanroby](https://github.com/Cog-Creators/Red-DiscordBot/pull/6814#issuecomment-6734543624). I attempted to re-request review, but GitHub returned a 404.
 
 **Status:** Awaiting review. I pushed the requested paragraph break; GitHub reported `REVIEW_REQUIRED` before the update, with 18 checks passing on the earlier commit.
 
