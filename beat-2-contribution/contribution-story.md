@@ -22,7 +22,7 @@ I installed the gate and ran its three manifest checks: documentation, style, an
 
 **Unit 8: Installed the PR monitor and checked the post-ship state**
 
-The monitor found PR #6814, 18 passing checks, a mergeable branch, and a review-required state. It saw Copilot's quota-limit notice as the only thread activity and drafted a wait note, not a reply or nudge; I checked the GitHub review and confirmed that it was bot-only. I did not post the draft, and the playbook sets a seven-day wait before considering one nudge.
+The monitor initially found only Copilot’s quota notice and drafted a wait note, which I did not post. On November 8 it detected a review but drafted a request for a missing nitpick because it missed the inline comment; GitHub showed the actual paragraph-spacing suggestion. I discarded that draft, added the requested paragraph break, and updated my playbook to check inline comments before responding. The playbook also sets a seven-day wait before considering one nudge.
 
 ---
 
@@ -139,6 +139,10 @@ The issue-scout scan and direct grading identified #6458 as an accepted, reprodu
 
 The voice checker rejected my original generic claim-comment opening, so I revised it to name the issue and my action; it passed before I updated the comment. The Unit 6 full regression evaluation scored 19/20 after I restored stale-attempt history as an independent rubric check. The gate's initial live review was unclear because legacy `gh` could not fetch issue evidence; with the current CLI first on `PATH`, docs, style, and Python 3.8 tests passed and `pr-precheck` accepted the package. The PR monitor found only an automated Copilot quota notice, so it drafted a wait note and I posted nothing.
 
+**2026-11-08**
+
+I checked PR #6814 and found Evanroby’s October 19 inline suggestion to put the `PYTHON=` note in its own paragraph. The monitor detected the review but missed the inline text, so I checked GitHub directly, added a blank line, and reran `tox -e docs` successfully. I pushed the change as commit `0c0e5d4f`.
+
 **Toolkit**
 
 - Tool: issue-scout, voice-guard, `CLAUDE.local.md` repository notes, ship-gate, and pr-monitor.
@@ -156,8 +160,10 @@ The voice checker rejected my original generic claim-comment opening, so I revis
 
 - 2026-10-18: Copilot's automated review could not run because the requesting user's quota was reached; no human maintainer feedback has arrived.
 - 2026-10-18: The PR monitor classified the bot-only activity as no human review and drafted a wait note. I did not post a response or nudge.
+- 2026-10-19: Evanroby suggested separating the `PYTHON=` note into its own paragraph.
+- 2026-11-08: I added the paragraph break, passed `tox -e docs`, and pushed commit `0c0e5d4f`.
 
-**Status:** Awaiting review. The branch is mergeable, 18 checks pass, and GitHub reports `REVIEW_REQUIRED` with merge state `BLOCKED` pending review.
+**Status:** Awaiting review. I pushed the requested paragraph break; GitHub reported `REVIEW_REQUIRED` before the update, with 18 checks passing on the earlier commit.
 
 **Toolkit**
 
@@ -178,7 +184,7 @@ The setup failure depended on which Python executable was available, so I captur
 
 **What I'd Do Differently Next Time**
 
-I would write and post the bounded plan before building, record the exact runtime version alongside each terminal transcript, and check which CLI binary will be inherited by automated tools before the first gate run. I would also separate automated bot activity from human review status when reading a new PR thread.
+I would write and post the bounded plan before building, record the exact runtime version alongside each terminal transcript, and check which CLI binary will be inherited by automated tools before the first gate run. I would also separate automated bot activity from human review status and inspect inline comments directly: the monitor found the review but missed the suggestion itself.
 
 ## Resources Used
 
