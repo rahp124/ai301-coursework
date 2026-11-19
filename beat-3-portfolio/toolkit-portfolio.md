@@ -4,6 +4,10 @@
 
 ## Featured Tools
 
+My first project was [Path Review issue #62](https://github.com/codepath/pathreview-ai301-fa26-s3/issues/62): the API health endpoint reported Redis as unhealthy even when Redis was running and responding to a ping. The probe read `settings.redis_host` and `settings.redis_port`, but the configuration defined only `redis_url`. That raised an attribute error, which the endpoint caught and reported as a dependency failure. My fix built the Redis client from the configured URL and added regression tests. A separate Postgres probe bug kept the overall response at HTTP 503, so I had to verify the Redis result specifically.
+
+For my later contribution, I chose [Red-DiscordBot issue #6458](https://github.com/Cog-Creators/Red-DiscordBot/issues/6458). Its contributor guide said Python 3.8.1 or newer was supported, but `make newenv` defaulted to an executable named `python3.8`. With only Python 3.12 available on PATH, setup failed because that executable was missing. I clarified the default and the existing PYTHON override in the guide, then revised the paragraph spacing after review. These two issues gave me real work to use the toolkit on, from selection and reproduction through PR review.
+
 I chose issue-scout, repro-check, plan-check, and pr-precheck because they cover the decisions I kept having to make: whether an issue was worth starting, whether I had reproduced the right problem, whether my plan followed the evidence, and whether my PR was ready for review. Their most useful changes came from specific mistakes. The scout needed to recognize work that was already resolved, while the reproduction and plan checkers needed to distinguish incomplete evidence from evidence that contradicted a claim.
 
 **issue-scout**
